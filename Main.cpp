@@ -1,5 +1,7 @@
 ﻿# include <Siv3D.hpp>
 
+
+
 // シーンの名前
 enum class State
 {
@@ -180,6 +182,7 @@ public:
         for (/*const*/ auto& block : m_blocks)
         {
             block.stretched(-1).draw(HSV(block.y - 40));
+            blocks.choice().draw(Palette::Black);
         }
 
         // ボールを描く
@@ -189,23 +192,7 @@ public:
         m_paddle.draw();
         
     }
-    /*void Main(); Game
-    { 
-       const Array<String> blocks =
-        {
-           m_blocks
-        };
-        //Sample({ m_blocks }).draw(Palette::Black);
-        blocks.choice().draw(Palette::Black);
-         while (System::Update())
-        {
-            if (blocks.choice().intersects(m_ball))
-            {
-                changeScene(State::Title);
-                getData().highScore = Max(getData().highScore, m_score);
-            }
-        }
-    }*/
+    
 };
 
 void Main()
@@ -234,4 +221,20 @@ void Main()
         }
         
     }
+    
+       const Array<String> blocks =
+        {
+           Game::m_blocks
+        };
+        //Sample({ m_blocks }).draw(Palette::Black);
+        ;
+         while (System::Update())
+        {
+            if (blocks.choice().intersects(Game::m_ball))
+            {
+                changeScene(State::Title);
+                getData().highScore = Max(getData().highScore, m_score);
+            }
+        }
+   
 }
